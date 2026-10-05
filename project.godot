@@ -13,7 +13,6 @@ config_version=5
 config/name="银白灰"
 run/main_scene="uid://k72stoh1ul3f"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [debug]
 
