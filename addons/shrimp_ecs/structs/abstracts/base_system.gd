@@ -2,4 +2,4 @@
 extends Node
 class_name ShrimpBaseSystem
 
-@abstract func execute(eventloop: ShrimpEventLoop, delta: float) -> void
+@abstract func execute(eventloop: ShrimpEventLoop) -> void

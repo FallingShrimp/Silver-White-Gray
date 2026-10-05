@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var eventloop: ShrimpEventLoop = $%eventloop
+@onready var canvas: CustomCanvas = $%canvas
+
 func _ready() -> void:
-	for i in ShrimpArrayUtil.ArrayZip.new([[1, 2, 3], ["a", "b", "c"]]):
-		print(i)
+	eventloop.add_resource("canvas", eventloop)
