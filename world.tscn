@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://k72stoh1ul3f"]
 
 [ext_resource type="Script" uid="uid://rjfwgoxbn7s7" path="res://scripts/world.gd" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://cht0djlmp23ep" path="res://addons/shrimp_ecs/core/eventloop.gd" id="2_fj7yv"]
 
 [node name="World" type="Node2D" unique_id=145972510]
 script = ExtResource("1_f3sb7")
+
+[node name="ShrimpEventLoop" type="Node" parent="." unique_id=792196433]
+script = ExtResource("2_fj7yv")
+metadata/_custom_type_script = "uid://cht0djlmp23ep"

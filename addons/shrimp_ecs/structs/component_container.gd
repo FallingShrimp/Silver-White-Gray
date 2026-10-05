@@ -35,3 +35,5 @@ func detach(entity: int):
 	instance_index.erase(entity)
 	instances.pop_back()
 	entity_ids.pop_back()
+func iterate() -> ShrimpArrayUtil.ArrayZip:
+	return ShrimpArrayUtil.ArrayZip.new([entity_ids, instances])

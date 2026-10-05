@@ -1,5 +1,5 @@
 @abstract
-extends Node
+extends RefCounted
 class_name ShrimpBaseComponent
 
-@abstract func get_component_name() -> StringName
+@abstract func get_component_id() -> StringName
