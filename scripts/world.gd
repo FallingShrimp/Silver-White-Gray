@@ -5,3 +5,4 @@ extends Node2D
 
 func _ready() -> void:
 	eventloop.add_resource("canvas", eventloop)
+	eventloop.spawn([Renderable.new()])

@@ -38,22 +38,25 @@ func add_resource(key: StringName, resource) -> ShrimpEventLoop:
 func get_resource(key: StringName):
 	return context.get(key)
 func query_entity(uses: Array[StringName]) -> Array:
-	var instances = uses.map(func(e: StringName): return components.get(e))
+	var instances: Array[ShrimpComponentContainer] = []
+	instances.assign(uses.map(func(e: StringName): return components.get(e)))
 	instances.sort_custom(func(a: ShrimpComponentContainer, b: ShrimpComponentContainer): return len(b.instances) >= len(a.instances))
 	if null in instances:
 		return []
 	var minInstance: ShrimpComponentContainer = instances[0]
 	var results = []
-	for entity in minInstance.iterate():
-		var hasComponents = []
-		var isValid = true
-		for storage in instances:
-			if not storage.has(entity):
-				isValid = false
-				break
-			hasComponents.append(storage.get(entity))
-		if isValid:
-			results.append_array([entity, hasComponents])
+	for record in minInstance.iterate():
+		match record:
+			[ var entity, _]:
+				var hasComponents = []
+				var isValid = true
+				for storage in instances:
+					if not storage.is_attached(entity):
+						isValid = false
+						break
+					hasComponents.append(storage.seek(entity))
+				if isValid:
+					results.append_array([entity, hasComponents])
 	return results
 func spawn(uses: Array[ShrimpBaseComponent]) -> int:
 	var id = next_entity
