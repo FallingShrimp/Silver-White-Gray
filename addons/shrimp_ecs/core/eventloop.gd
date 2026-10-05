@@ -19,6 +19,24 @@ func add_component(entity: int, component: ShrimpBaseComponent):
 		components[id] = ShrimpComponentContainer.new()
 	components[id].attach(entity, component)
 	return self
+func query(uses: Array[StringName]) -> Array:
+	var instances = uses.map(func(e: StringName): return components.get(e))
+	instances.sort_custom(func(a: ShrimpComponentContainer, b: ShrimpComponentContainer): return len(b.instances) >= len(a.instances))
+	if null in instances:
+		return []
+	var minInstance: ShrimpComponentContainer = instances[0]
+	var results = []
+	for entity in minInstance.iterate():
+		var hasComponents = []
+		var isValid = true
+		for storage in instances:
+			if not storage.has(entity):
+				isValid = false
+				break
+			hasComponents.append(storage.get(entity))
+		if isValid:
+			results.append_array([entity, hasComponents])
+	return results
 func spawn(uses: Array[ShrimpBaseComponent]) -> int:
 	var id = next_entity
 	next_entity += 1

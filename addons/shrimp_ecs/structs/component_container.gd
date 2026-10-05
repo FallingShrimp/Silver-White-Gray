@@ -1,4 +1,4 @@
-extends Node
+extends RefCounted
 class_name ShrimpComponentContainer
 
 ## EntityID -> ComponentInstance
@@ -9,7 +9,7 @@ var entity_ids: Array[int]
 
 func is_attached(entity: int):
 	return entity in instance_index
-func reference(entity: int) -> ShrimpBaseComponent:
+func seek(entity: int) -> ShrimpBaseComponent:
 	return instances[instance_index[entity]]
 func attach(entity: int, instance: ShrimpBaseComponent) -> ShrimpComponentContainer:
 	if entity in instance_index:
