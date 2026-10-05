@@ -1,14 +1,23 @@
 extends Node
 class_name ShrimpEventLoop
 
-var next_entity: int = 0
-var systems: Array[ShrimpBaseSystem] = []
+enum ProcessCallback {
+	PHYSICS,
+	IDLE
+}
+
+@export var systems: Array[ShrimpBaseSystem] = []
+@export var next_entity: int = 0
+@export var process_callback: ProcessCallback = ProcessCallback.PHYSICS
+
 var components: Dictionary[StringName, ShrimpComponentContainer] = {}
 
-func _ready() -> void:
-	for i in get_children():
-		if i is ShrimpBaseSystem:
-			systems.append(i)
+func _process(delta: float) -> void:
+	if process_callback == ProcessCallback.IDLE:
+		execute(delta)
+func _physics_process(delta: float) -> void:
+	if process_callback == ProcessCallback.PHYSICS:
+		execute(delta)
 
 func add_system(system: ShrimpBaseSystem):
 	if system not in systems:
@@ -43,6 +52,6 @@ func spawn(uses: Array[ShrimpBaseComponent]) -> int:
 	for component in uses:
 		add_component(id, component)
 	return id
-func execute():
+func execute(delta: float):
 	for system in systems:
-		system.execute(self)
+		system.execute(self, delta)
