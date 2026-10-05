@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d1chmnouytt3u" path="res://scripts/systems/MovementSystem.gd" id="4_pkg7o"]
 [ext_resource type="Script" uid="uid://l2erkmtssw7t" path="res://scripts/canvas.gd" id="5_036b0"]
 [ext_resource type="Script" uid="uid://dvvix8xu7dqcw" path="res://scripts/systems/RenderingSystem.gd" id="5_gbfbk"]
+[ext_resource type="Script" uid="uid://cddqr6rnjmgu0" path="res://scripts/systems/MouseFollowSystem.gd" id="6_pkg7o"]
 
 [sub_resource type="Resource" id="Resource_ioo17"]
 script = ExtResource("4_pkg7o")
@@ -15,17 +16,19 @@ metadata/_custom_type_script = "uid://d1chmnouytt3u"
 script = ExtResource("5_gbfbk")
 metadata/_custom_type_script = "uid://dvvix8xu7dqcw"
 
+[sub_resource type="Resource" id="Resource_gbfbk"]
+script = ExtResource("6_pkg7o")
+
 [node name="World" type="Node2D" unique_id=145972510]
 script = ExtResource("1_f3sb7")
 
 [node name="eventloop" type="Node" parent="." unique_id=792196433]
 unique_name_in_owner = true
 script = ExtResource("2_fj7yv")
-systems = Array[ExtResource("3_dwbse")]([SubResource("Resource_ioo17"), SubResource("Resource_wse8f")])
+systems = Array[ExtResource("3_dwbse")]([SubResource("Resource_ioo17"), SubResource("Resource_wse8f"), SubResource("Resource_gbfbk")])
 process_callback = 1
 metadata/_custom_type_script = "uid://cht0djlmp23ep"
 
 [node name="canvas" type="Node2D" parent="." unique_id=1467889001]
 unique_name_in_owner = true
-position = Vector2(505, 295)
 script = ExtResource("5_036b0")
