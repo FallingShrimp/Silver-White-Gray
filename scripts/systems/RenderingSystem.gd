@@ -6,13 +6,16 @@ func execute(eventloop: ShrimpEventLoop) -> void:
 		match record:
 			[ var _id, var components]:
 				var transform: Transformable = null
-				for component in components:
-					if component is Renderable:
-						var canvas = eventloop.get_resource("canvas")
-						if canvas is CustomCanvas:
-							canvas.callback = func(_c):
-								print("tr", transform)
-								# canvas.draw_circle()
-							canvas.queue_redraw()
-					elif component is Transformable:
-						transform = component
+				var drawn = false
+				while !drawn:
+					for component in components:
+						if component is Renderable:
+							if !transform: continue
+							var canvas = eventloop.get_resource("canvas")
+							if canvas is CustomCanvas:
+								canvas.callback = func(_c):
+									canvas.draw_circle(transform.position, 20, Color.RED, true)
+								canvas.queue_redraw()
+								drawn = true
+						elif component is Transformable:
+							transform = component

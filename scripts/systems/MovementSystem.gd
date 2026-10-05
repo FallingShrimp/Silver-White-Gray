@@ -9,4 +9,3 @@ func execute(eventloop: ShrimpEventLoop) -> void:
 				for component in components:
 					if component is Transformable:
 						component.position += direction * component.speed * eventloop.get_resource("delta")
-						print(component)

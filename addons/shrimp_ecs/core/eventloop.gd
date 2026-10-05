@@ -56,7 +56,7 @@ func query_entity(uses: Array[StringName]) -> Array:
 						break
 					hasComponents.append(storage.seek(entity))
 				if isValid:
-					results.append_array([entity, hasComponents])
+					results.append([entity, hasComponents])
 	return results
 func spawn(uses: Array[ShrimpBaseComponent]) -> int:
 	var id = next_entity

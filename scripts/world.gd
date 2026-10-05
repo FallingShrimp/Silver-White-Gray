@@ -4,5 +4,5 @@ extends Node2D
 @onready var canvas: CustomCanvas = $%canvas
 
 func _ready() -> void:
-	eventloop.add_resource("canvas", eventloop)
+	eventloop.add_resource("canvas", canvas)
 	eventloop.spawn([Renderable.new()])

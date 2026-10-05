@@ -27,4 +27,5 @@ metadata/_custom_type_script = "uid://cht0djlmp23ep"
 
 [node name="canvas" type="Node2D" parent="." unique_id=1467889001]
 unique_name_in_owner = true
+position = Vector2(505, 295)
 script = ExtResource("5_036b0")
